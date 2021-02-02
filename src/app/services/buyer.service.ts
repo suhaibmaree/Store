@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Buyer} from '../model/buyer';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,4 +18,14 @@ export class BuyerService {
       (error) => console.log(error)
     );
   }
+
+  getBuyers(): void{
+    this.http.get(environment.firebase.databaseURL + '/data/buyers.json')
+      .subscribe(
+        (data) => console.log(data),
+        (error) => console.log(error)
+      );
+  }
+
+
 }

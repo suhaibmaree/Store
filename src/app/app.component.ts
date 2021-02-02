@@ -31,4 +31,10 @@ export class AppComponent {
     this.sellerService.storeSellers(this.sellers);
     this.buyerService.storeBuyers(this.buyers);
   }
+
+  onGet(): void {
+    this.itemService.getItems();
+    this.buyerService.getBuyers();
+    this.sellerService.getSellers();
+  }
 }

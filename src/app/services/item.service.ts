@@ -20,4 +20,12 @@ export class ItemService {
        (error) => console.log(error)
      );
   }
+
+  getItems(): void{
+    this.http.get(environment.firebase.databaseURL + '/data/items.json')
+      .subscribe(
+        (data) => console.log(data),
+        (error) => console.log(error)
+      );
+  }
 }

@@ -18,4 +18,13 @@ export class SellerService {
       (error) => console.log(error)
     );
   }
+
+  getSellers(): void{
+    this.http.get(environment.firebase.databaseURL + '/data/sellers.json')
+      .subscribe(
+        (data) => console.log(data),
+        (error) => console.log(error)
+      );
+  }
+
 }
