@@ -24,7 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              {
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
+              }
             ],
             "scripts": []
           },
@@ -120,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "Store"
+  "defaultProject": "Store",
+  "cli": {
+    "analytics": "6e40a9d2-c53b-45cd-bc41-fc4f77559b65"
+  }
 }
