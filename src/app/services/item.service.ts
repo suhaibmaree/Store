@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Item} from '../model/item';
+import {environment} from '../../environments/environment';
 
 
 
@@ -12,7 +13,11 @@ export class ItemService {
   constructor(private http: HttpClient) {
   }
 
-  storeItem(items: Item[]): any{
-    return this.http.put<any>('https://store-exalt-default-rtdb.europe-west1.firebasedatabase.app/data/items.json', items);
+  storeItems(items: Item[]): void{
+     this.http.put<any>(environment.firebase.databaseURL + '/data/items.json', items).
+     subscribe(
+       (data) => console.log(data),
+       (error) => console.log(error)
+     );
   }
 }
