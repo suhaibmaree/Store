@@ -15,6 +15,9 @@ export class AppComponent {
     [3, 'Third Item', '', 'This is a dummy description for the third item', 3],
   ];
 
+  sellers = [new Seller(1, 'Suhaib', 'seller', [1])];
+  buyers = [new Buyer(1, 'Sajie', 'buyer', [3, 2], [1, 2])];
+
   constructor(private itemService: ItemService) {
   }
 
