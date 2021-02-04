@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Buyer} from '../model/buyer';
+import firebase from 'firebase';
+import {AuthService} from '../auth/auth.service';
 
 
 @Injectable({
@@ -9,23 +11,23 @@ import {Buyer} from '../model/buyer';
 })
 export class BuyerService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) {
+  }
 
-  storeBuyers(buyers: Buyer[]): void{
-     this.http.put<any>(environment.firebase.databaseURL + '/data/buyers.json', buyers).
-    subscribe(
+  storeBuyers(buyers: Buyer[]): void {
+    const token = this.authService.getToken();
+    this.http.put<any>(environment.firebase.databaseURL + '/data/buyers.json?auth=' + token, buyers).subscribe(
       (data) => console.log(data),
       (error) => console.log(error)
     );
   }
 
-  getBuyers(): void{
-    this.http.get(environment.firebase.databaseURL + '/data/buyers.json')
+  getBuyers(): void {
+    const token = this.authService.getToken();
+    this.http.get(environment.firebase.databaseURL + '/data/buyers.json?auth=' + token)
       .subscribe(
         (data) => console.log(data),
         (error) => console.log(error)
       );
   }
-
-
 }
