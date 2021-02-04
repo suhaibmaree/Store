@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Item} from './model/item';
 import {ItemService} from './services/item.service';
 import {SellerService} from './services/seller.service';
@@ -11,7 +11,7 @@ import {Buyer} from './model/buyer';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Store';
   items = [
     new Item(1, 'First Item', '', 'This is a dummy description for the first item', 1),
@@ -33,8 +33,16 @@ export class AppComponent {
   }
 
   onGet(): void {
-    this.itemService.getItems();
+    this.itemService.getItems()
+      .subscribe(
+        (items: any[]) => console.log(items),
+        (error) => console.log(error)
+      );
+
     this.buyerService.getBuyers();
     this.sellerService.getSellers();
+  }
+
+  ngOnInit(): void {
   }
 }

@@ -5,8 +5,9 @@ export class Buyer implements User {
   userId: number;
   userName: string;
   userType: string;
-
+  email: string;
   cart: number[];
+
   favorite: number[];
 
   constructor(userId: number, userName: string, userType: string, cart: number[], favorite: number[]) {

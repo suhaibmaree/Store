@@ -1,6 +1,7 @@
 import {User} from './user';
 
 export class Seller implements User{
+  email: string;
   userId: number;
   userName: string;
   userType: string;
