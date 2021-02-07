@@ -1,16 +1,54 @@
 
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 mx-5">
-    <form (ngSubmit)="onSignup(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="email" class="">Mail</label>
-        <input type="email" id="email" name="email" ngModel class="form-control ">
+<!--<div class="row">-->
+<!--  <div class="col-xs-12 col-sm-10 col-md-8 mx-5">-->
+<!--    <form (ngSubmit)="onSignup(f)" #f="ngForm">-->
+<!--      <div class="form-group">-->
+<!--        <label for="email" class="">Mail</label>-->
+<!--        <input type="email" id="email" name="email" ngModel class="form-control ">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="password" class="">Password</label>-->
+<!--        <input type="password" id="password" name="password" ngModel class="form-control ">-->
+<!--      </div>-->
+<!--      <button class="btn btn-primary" type="submit"> Sign Up</button>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+<body>
+<div class="signup-form">
+  <form (ngSubmit)="onSignup(f)" #f="ngForm">
+    <h2>Register</h2>
+    <p class="hint-text">Create your account. It's free.</p>
+    <div class="form-group">
+      <div class="row">
+        <div class="col"><input ngModel type="text" class="form-control" name="first_name" placeholder="First Name" required="required" ></div>
+        <div class="col"><input ngModel type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"></div>
       </div>
-      <div class="form-group">
-        <label for="password" class="">Password</label>
-        <input type="password" id="password" name="password" ngModel class="form-control ">
-      </div>
-      <button class="btn btn-primary" type="submit"> Sign Up</button>
-    </form>
-  </div>
+    </div>
+    <div class="form-group">
+      <input type="email" id="email" ngModel class="form-control" name="email" placeholder="Email" required="required">
+    </div>
+    <div class="form-group">
+      <input type="password" id="password" ngModel class="form-control" name="password" placeholder="Password" required="required">
+    </div>
+
+    <div class="form-group">
+      <label> Please Select your Account Type: </label>
+      <br>
+        <label class="mr-2">
+          <input type="radio" name="type" value="Buyer" checked ngModel>
+          Buyer
+        </label>
+        <label>
+          <input type="radio" name="type" value="seller" ngModel>
+          seller
+        </label>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+    </div>
+  </form>
+  <div class="text-center" >Already have an account? <a routerLink="/signin">Sign in</a></div>
 </div>
+</body>
