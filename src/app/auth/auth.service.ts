@@ -63,7 +63,7 @@ export class AuthService {
   }
 
   getToken(): string {
-    if (this.token != null){
+    if (this.token != null) {
       firebase.auth().currentUser.getIdToken()
         .then((token: string) => this.token === token);
       return this.token;
@@ -73,5 +73,11 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return this.token !== '';
+  }
+
+  // Sign out
+  signOut(): any {
+    firebase.auth().signOut();
+    this.token = '';
   }
 }

@@ -43,4 +43,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  signOut(): any {
+    this.authService.signOut();
+  }
 }

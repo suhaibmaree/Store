@@ -28,8 +28,8 @@ export class AppComponent implements OnInit{
 
   onSave(): void {
     this.itemService.storeItems(this.items);
-    this.sellerService.storeSellers(this.sellers);
-    this.buyerService.storeBuyers(this.buyers);
+    // this.sellerService.storeSellers(this.sellers);
+    // this.buyerService.storeBuyers(this.buyers);
   }
 
   onGet(): void {
@@ -39,8 +39,8 @@ export class AppComponent implements OnInit{
         (error) => console.log(error)
       );
 
-    this.buyerService.getBuyers();
-    this.sellerService.getSellers();
+    // this.buyerService.getBuyers();
+    // this.sellerService.getSellers();
   }
 
   ngOnInit(): void {

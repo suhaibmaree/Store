@@ -23,6 +23,7 @@
 
       <button class="btn btn-success m-lg-1" routerLink="/signin" routerLinkActive="active" *ngIf="!authService.isAuthenticated()">Sign In</button>
       <button class="btn btn-primary " routerLink="/signup" routerLinkActive="active" *ngIf="!authService.isAuthenticated()">Sign Up</button>
+      <button class="btn btn-outline-warning "  *ngIf="authService.isAuthenticated()" (click)="signOut()">Sign Out</button>
 
     </form>
   </div>
