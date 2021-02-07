@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import {AuthService} from '../../auth/auth.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   items: MenuItem[];
 
 
-  constructor() {
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -41,11 +42,5 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
-  signIn(): void {
 
-  }
-
-  signUp(): void {
-
-  }
 }

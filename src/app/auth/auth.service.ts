@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {Router} from '@angular/router';
 import firebase from 'firebase';
 
 @Injectable({
@@ -9,28 +9,29 @@ import firebase from 'firebase';
 export class AuthService {
 
   userData: any; // Save logged in user data
-  private token: string;
+  private token = '';
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public router: Router,
-  ) {}
+  ) {
+  }
 
   // Sign in with email/password
   signIn(email, password): any {
-   firebase.auth().signInWithEmailAndPassword(email, password)
-     .then(
-       (response) => {
-         firebase.auth().currentUser.getIdToken()
-           .then((token: string) => this.token = token);
-         console.log(response);
-         this.router.navigate(['/']);
-       }
-     )
-     .catch((error) => {
-       console.log(error);
-       window.alert(error.message);
-    });
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(
+        (response) => {
+          firebase.auth().currentUser.getIdToken()
+            .then((token: string) => this.token = token);
+          console.log(response);
+          this.router.navigate(['/']);
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+        window.alert(error.message);
+      });
   }
 
   // Sign up with email/password
@@ -52,19 +53,25 @@ export class AuthService {
 
   // Sign out
   SignOut(): any {
-   firebase.auth().signOut();
+    firebase.auth().signOut();
   }
 
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null) ? true : false;
+    return user !== null;
   }
 
-  getToken(): any{
-    firebase.auth().currentUser.getIdToken()
-      .then((token: string) => this.token = token);
-    return this.token;
+  getToken(): string {
+    if (this.token != null){
+      firebase.auth().currentUser.getIdToken()
+        .then((token: string) => this.token === token);
+      return this.token;
+    }
+    return '';
   }
 
+  isAuthenticated(): boolean {
+    return this.token !== '';
+  }
 }
