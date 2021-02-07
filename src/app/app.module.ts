@@ -1,29 +1,26 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {ItemService} from './services/item.service';
-import {SignupComponent} from './auth/signup/signup.component';
-import {SigninComponent} from './auth/signin/signin.component';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
+
+import {AppComponent} from './app.component';
+import {SignupComponent} from './auth/signup/signup.component';
+import {SigninComponent} from './auth/signin/signin.component';
 import {HeaderComponent} from './component/header/header.component';
 
-// Firebase services + enviorment module
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-
-
-import {ToolbarModule} from 'primeng/toolbar';
-import {ButtonModule} from 'primeng/button';
-import {SharedModule} from 'primeng/api';
-import {SlideMenuModule} from 'primeng/slidemenu';
-import {environment} from '../environments/environment';
 import {SellerService} from './services/seller.service';
 import {AuthService} from './auth/auth.service';
 import {BuyerService} from './services/buyer.service';
+import {ItemService} from './services/item.service';
+
+// Firebase services + environment module
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import {environment} from '../environments/environment';
+import {AuthGuardService} from './auth/auth-guard.service';
+
 
 
 @NgModule({
@@ -38,10 +35,6 @@ import {BuyerService} from './services/buyer.service';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ToolbarModule,
-    ButtonModule,
-    SharedModule,
-    SlideMenuModule,
     AngularFireModule.initializeApp({
       authDomain: environment.firebase.authDomain,
       apiKey: environment.firebase.apiKey,
@@ -49,7 +42,7 @@ import {BuyerService} from './services/buyer.service';
     }),
     AngularFireAuthModule
   ],
-  providers: [ItemService, SellerService, BuyerService, AuthService],
+  providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
