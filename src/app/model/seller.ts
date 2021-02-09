@@ -9,11 +9,12 @@ export class Seller implements User{
   address: string;
   items: number[];
 
-  constructor(userId: string, firstName: string, lastName: string, userType: string, items: number[]) {
+  constructor(userId: string, firstName: string, lastName: string, userType: string, address: string, items: number[]) {
     this.userId = userId;
     this.firstName = firstName;
     this.lastName = lastName;
     this.userType = userType;
     this.items = items;
+    this.address = address;
   }
 }

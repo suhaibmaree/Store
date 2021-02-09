@@ -1,11 +1,11 @@
 import {Injectable, NgZone} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import {Buyer} from '../model/buyer';
 import {BuyerService} from '../services/buyer.service';
 import {SellerService} from '../services/seller.service';
-import {User} from '../model/user';
+import {Seller} from '../model/seller';
 
 @Injectable({
   providedIn: 'root'
@@ -25,22 +25,24 @@ export class AuthService {
   ) {
     /* Saving user data in localstorage when
     logged in and setting up null when logged out */
+    this.afAuth.idToken.subscribe(value => {
+      if (value) {
+        this.token = value;
+        localStorage.setItem('token', JSON.stringify(this.token));
+        JSON.parse(localStorage.getItem('token'));
+      } else {
+        localStorage.setItem('token', null);
+        JSON.parse(localStorage.getItem('token'));
+      }
+    });
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-
-        this.afAuth.idToken.subscribe(async value => this.token = value);
-        localStorage.setItem('token', JSON.stringify(this.token));
-
-        JSON.parse(localStorage.getItem('token'));
         JSON.parse(localStorage.getItem('user'));
       } else {
         localStorage.setItem('user', null);
-        localStorage.setItem('token', null);
-
         JSON.parse(localStorage.getItem('user'));
-        JSON.parse(localStorage.getItem('token'));
       }
     });
   }
@@ -50,12 +52,8 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result);
-        this.ngZone.run(() => {
-          this.router.navigate(['/']);
-          this.SetUserData(result.user);
-          this.setToken();
-        });
         // this.SetUserData(result.user);
+        this.setToken('', '', '', '', false);
       }).catch((error) => {
         window.alert(error.message);
       });
@@ -66,41 +64,17 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         // this.SetUserData(result.user);
-        const id = this.afs.createId();
-        switch (type) {
-          case 'Buyer': {
-            this.buyerService.storeBuyer(new Buyer(id, firstName, lastName, type, [], []));
-            break;
-          }
-          case 'Seller': {
-            // @ts-ignore
-            this.sellerService.storeSeller(new Seller(id, firstName, lastName, type, []));
-            break;
-          }
-        }
-        this.ngZone.run(() => {
-          this.router.navigate(['/']);
-          this.SetUserData(result.user);
-          this.setToken();
-        });
+        this.setToken(firstName, lastName, address, type, true);
         console.log(result);
       }).catch((error) => {
         window.alert(error.message);
       });
   }
 
-  // Sign out
-  SignOut(): any {
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
-    });
-  }
-
-  // Returns true when user is looged in and email is verified
+  // Returns true when user is logged in and email is verified
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null);
+    const token = localStorage.getItem('token');
+    return (token !== null);
   }
 
   getToken(): string {
@@ -108,42 +82,36 @@ export class AuthService {
     return token;
   }
 
-  isAuthenticated(): boolean {
-    return this.isLoggedIn;
+  setToken(firstName: any, lastName: any, address: any, type: any, addUser: boolean): any {
+    this.afAuth.idToken.subscribe(value => {
+      this.token = value;
+      localStorage.setItem('token', value);
+      if (addUser){
+        this.addUser(firstName, lastName, address, type);
+      }
+      this.router.navigate(['/home']);
+    });
+  }
+
+  private addUser(firstName: any, lastName: any, address: any, type: any): any {
+    const id = this.afs.createId();
+    switch (type) {
+      case 'Buyer': {
+        this.buyerService.storeBuyer(new Buyer(id, firstName, lastName, type, address, [], []));
+        break;
+      }
+      case 'Seller': {
+        this.sellerService.storeSeller(new Seller(id, firstName, lastName, address, type, []));
+        break;
+      }
+    }
   }
 
   signOut(): any {
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['/signin']);
-      this.token = '';
-    });
-  }
-
-
-  /* Setting up user data when sign in with username/password,
- sign up with username/password and sign in with social auth
- provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user): any {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const userData: User = {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      userType: user.userType,
-      userId: user.userId,
-      address: user.address
-    };
-    return userRef.set(userData, {
-      merge: true
-    });
-  }
-
-  setToken(): any {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc('token');
-    this.afAuth.idToken.subscribe(async value => this.token = value);
-    return userRef.set(this.token, {
-      merge: true
-    });
+    this.router.navigate(['/']);
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    this.token = '';
+    return this.afAuth.signOut();
   }
 }

@@ -8,17 +8,18 @@ import {AngularFireAuth} from '@angular/fire/auth';
   providedIn: 'root'
 })
 export class HttpService {
-  private token: string;
   constructor(private httpClient: HttpClient, public afAuth: AngularFireAuth) {
   }
 
   putHttp(path: string, object: any): any{
-    const fullPath = environment.firebase.databaseURL + path + this.token;
-    return this.httpClient.put<any>(fullPath, object);
+    const token = localStorage.getItem('token');
+    const fullPath = environment.firebase.databaseURL + path + token;
+    return this.httpClient.post<any>(fullPath, object);
   }
 
   getHttp(path: string): any{
-    const fullPath = environment.firebase.databaseURL + path + this.token;
+    const token = localStorage.getItem('token');
+    const fullPath = environment.firebase.databaseURL + path + token;
     return this.httpClient.get<any>(fullPath);
   }
 }
