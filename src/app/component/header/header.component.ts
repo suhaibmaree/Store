@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {AuthService} from '../../auth/auth.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,8 @@ export class HeaderComponent implements OnInit {
   items: MenuItem[];
 
 
-  constructor(public authService: AuthService) {
+
+  constructor(public authService: AuthService, public router: Router) {
   }
 
   ngOnInit(): void {

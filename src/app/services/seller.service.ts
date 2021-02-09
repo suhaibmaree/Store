@@ -1,32 +1,21 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 import {Seller} from '../model/seller';
-import {AuthService} from '../auth/auth.service';
+import {HttpService} from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SellerService {
+  private path = '/data/sellers.json?auth=';
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor( private httpInterceptorService: HttpService) {
   }
 
-  storeSellers(sellers: Seller[]): void {
-    const token = this.authService.getToken();
-    this.http.put<any>(environment.firebase.databaseURL + '/data/sellers.json?auth=' + token, sellers).subscribe(
-      (data) => console.log(data),
-      (error) => console.log(error)
-    );
+  storeSeller(seller: Seller): void {
+    this.httpInterceptorService.putHttp(this.path, seller);
   }
 
-  getSellers(): void {
-    const token = this.authService.getToken();
-    this.http.get(environment.firebase.databaseURL + '/data/sellers.json?auth=' + token)
-      .subscribe(
-        (data) => console.log(data),
-        (error) => console.log(error)
-      );
+  getSellers(): any {
+    return this.httpInterceptorService.getHttp(this.path);
   }
-
 }

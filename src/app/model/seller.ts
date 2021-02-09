@@ -1,16 +1,19 @@
 import {User} from './user';
+import {SellerService} from '../services/seller.service';
 
 export class Seller implements User{
   email: string;
-  userId: number;
-  userName: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
   userType: string;
-
+  address: string;
   items: number[];
 
-  constructor(userId: number, userName: string, userType: string, items: number[]) {
+  constructor(userId: string, firstName: string, lastName: string, userType: string, items: number[]) {
     this.userId = userId;
-    this.userName = userName;
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.userType = userType;
     this.items = items;
   }

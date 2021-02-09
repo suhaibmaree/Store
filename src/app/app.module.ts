@@ -20,6 +20,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {environment} from '../environments/environment';
 import {AuthGuardService} from './auth/auth-guard.service';
+import {HttpService} from './services/http.service';
+import { HomeComponent } from './component/home/home.component';
 
 
 
@@ -28,7 +30,8 @@ import {AuthGuardService} from './auth/auth-guard.service';
     AppComponent,
     SignupComponent,
     SigninComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import {AuthGuardService} from './auth/auth-guard.service';
     }),
     AngularFireAuthModule
   ],
-  providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuardService],
+  providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuardService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
