@@ -2,7 +2,6 @@ import {Injectable, NgZone} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
-import firebase from 'firebase';
 import {Buyer} from '../model/buyer';
 import {BuyerService} from '../services/buyer.service';
 import {SellerService} from '../services/seller.service';

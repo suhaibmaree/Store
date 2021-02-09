@@ -1,5 +1,4 @@
 import {User} from './user';
-import {SellerService} from '../services/seller.service';
 
 export class Seller implements User{
   email: string;
