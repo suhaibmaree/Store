@@ -6,24 +6,23 @@ import {HttpService} from './http.service';
   providedIn: 'root'
 })
 export class SellerService {
-  private path = '/data/sellers.json?auth=';
+  private path = '/data/sellers.json';
 
-  constructor( private httpInterceptorService: HttpService) {
+  constructor( private http: HttpService) {
   }
 
   storeSeller(seller: Seller): void {
-    this.httpInterceptorService.putHttp(this.path, seller)
+    this.http.putHttp(this.path, seller)
       .subscribe(
         (data) => {
           console.log(data);
-          return data;
         },
         (error) => console.log(error)
       );
   }
 
   getSellers(): any {
-    return this.httpInterceptorService.getHttp(this.path)
+    return this.http.getHttp(this.path)
       .subscribe(
         (data) => {
           console.log(data);

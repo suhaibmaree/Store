@@ -18,6 +18,5 @@ export class SigninComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     this.authService.signIn(email, password);
-    (this.authService.isLoggedIn) ? console.log('user Signed In') : console.log('user fucked');
   }
 }

@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   // sellers = [new Seller(1, 'Suhaib', 'seller', [1])];
   // buyers = [new Buyer(1, 'Sajie', 'buyer', [3, 2], [1, 2])];
 
-  constructor(private itemService: ItemService, private sellerService: SellerService, private buyerService: BuyerService) {
+  constructor(private itemService: ItemService) {
   }
 
   ngOnInit(): void {

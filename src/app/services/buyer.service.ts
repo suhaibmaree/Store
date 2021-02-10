@@ -7,7 +7,7 @@ import {HttpService} from './http.service';
   providedIn: 'root'
 })
 export class BuyerService {
-  private path = '/data/buyers.json?auth=';
+  private path = '/data/buyers.json';
 
   constructor( private http: HttpService) {
   }
