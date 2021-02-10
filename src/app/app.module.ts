@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
@@ -16,12 +16,17 @@ import {BuyerService} from './services/buyer.service';
 import {ItemService} from './services/item.service';
 
 // Firebase services + environment module
-import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {environment} from '../environments/environment';
 import {AuthGuardService} from './auth/auth-guard.service';
 import {HttpService} from './services/http.service';
 import { HomeComponent } from './component/home/home.component';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+
+// primeng
+import {ButtonModule} from 'primeng/button';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 
 
@@ -38,12 +43,17 @@ import { HomeComponent } from './component/home/home.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    AngularFireAuthModule,
+    ButtonModule,
+    MessagesModule,
+    MessageModule,
     AngularFireModule.initializeApp({
       authDomain: environment.firebase.authDomain,
       apiKey: environment.firebase.apiKey,
       projectId: environment.firebase.projectId
     }),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule
   ],
   providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuardService, HttpService],
   bootstrap: [AppComponent]

@@ -1,17 +1,30 @@
 
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 mx-5">
-    <form (ngSubmit)="onSignIn(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="email" class="">Mail</label>
-        <input type="email" id="email" name="email" ngModel class="form-control ">
-      </div>
-      <div class="form-group">
-        <label for="password" class="">Password</label>
-        <input type="password" id="password" name="password" ngModel class="form-control ">
-      </div>
-      <button class="btn btn-primary" type="submit"> Sign In</button>
-    </form>
-    <div class="text-center">Already have an account? <a routerLink="/signup">Sign up</a></div>
-  </div>
+<body>
+<div class="login-form">
+  <form [formGroup]="form" (ngSubmit)="onSignIn()">
+    <h2 class="text-center">Log in</h2>
+    <div class="form-group">
+      <input type="text" id="email" placeholder="Email" class="form-control" formControlName="email" >
+      <span
+        *ngIf="!form.get('email').valid && form.get('email').touched"
+        class="help-block"
+        style="color: red">Please enter valid email</span>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="Password" formControlName="password">
+      <span
+        *ngIf="!form.get('password').valid && form.get('password').touched"
+        class="help-block"
+        style="color: red">This field is required</span>
+      <br>
+<!--      <span-->
+<!--        *ngIf="!form.get('password').errors['passwordValid'] && form.get('password').touched"-->
+<!--        class="help-block" style="color: red">This password is invalid </span>-->
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+    </div>
+  </form>
+  <p class="text-center"><a routerLink="/signup">Create an Account</a></p>
 </div>
+</body>

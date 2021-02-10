@@ -33,14 +33,14 @@ export class AuthService {
             .then((token: string) => {
               this.token = token;
               localStorage.setItem('token', token);
+              this.router.navigate(['/home']);
             });
           console.log(response);
-          this.router.navigate(['/home']);
         }
       )
       .catch((error) => {
-        console.log(error);
         window.alert(error.message);
+        console.log(error);
       });
   }
 
@@ -65,9 +65,9 @@ export class AuthService {
                   break;
                 }
               }
+              this.router.navigate(['/home']);
             });
           console.log(response);
-          this.router.navigate(['/home']);
         }
       )
       .catch((error) => {
