@@ -26,6 +26,7 @@ export class AuthService {
 
   // Sign in with email/password
   signIn(email, password): any {
+    localStorage.setItem('email', email);
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         (response) => {
@@ -41,11 +42,13 @@ export class AuthService {
       .catch((error) => {
         window.alert(error.message);
         console.log(error);
+        localStorage.setItem('email', null);
       });
   }
 
   // Sign up with email/password
   signUp(email, password, firstName: any, lastName: any, address: any, type: any): any {
+    localStorage.setItem('email', email);
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(
         (response) => {
@@ -73,6 +76,7 @@ export class AuthService {
       .catch((error) => {
         console.log(error);
         window.alert(error.message);
+        localStorage.setItem('email', null);
       });
   }
 
@@ -100,9 +104,10 @@ export class AuthService {
 
   // Sign out
   signOut(): any {
-    firebase.auth().signOut();
-    this.token = '';
     localStorage.setItem('token', null);
+    localStorage.setItem('email', null);
     this.router.navigate(['/signin']);
+    this.token = '';
+    firebase.auth().signOut();
   }
 }

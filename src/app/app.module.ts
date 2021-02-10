@@ -47,11 +47,7 @@ import {MessageModule} from 'primeng/message';
     ButtonModule,
     MessagesModule,
     MessageModule,
-    AngularFireModule.initializeApp({
-      authDomain: environment.firebase.authDomain,
-      apiKey: environment.firebase.apiKey,
-      projectId: environment.firebase.projectId
-    }),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     ReactiveFormsModule
   ],

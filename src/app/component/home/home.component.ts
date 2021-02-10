@@ -11,6 +11,8 @@ import {BuyerService} from '../../services/buyer.service';
 })
 export class HomeComponent implements OnInit {
 
+  private email: string;
+
   items = [
     new Item(1, 'First Item', '', 'This is a dummy description for the first item', 1),
     new Item(2, 'Second Item', '', 'This is a dummy description for the second item', 2),
@@ -21,6 +23,8 @@ export class HomeComponent implements OnInit {
   // buyers = [new Buyer(1, 'Sajie', 'buyer', [3, 2], [1, 2])];
 
   constructor(private itemService: ItemService) {
+    this.email = localStorage.getItem('email');
+
   }
 
   ngOnInit(): void {

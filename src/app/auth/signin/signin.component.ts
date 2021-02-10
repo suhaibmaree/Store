@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,12 @@ export class SigninComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
+    const token = localStorage.getItem('token');
+    if (token !== 'null'){
+      this.router.navigate(['/home']);
+    }
+
   }
 
   ngOnInit(): void {
