@@ -11,8 +11,6 @@ import {Seller} from '../model/seller';
   providedIn: 'root'
 })
 export class AuthService {
-
-  userData: any; // Save logged in user data
   private token = '';
 
   constructor(

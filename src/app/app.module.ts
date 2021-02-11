@@ -25,9 +25,10 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 
 // primeng
+import {MenubarModule} from 'primeng/menubar';
 import {ButtonModule} from 'primeng/button';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import {SharedModule} from 'primeng/api';
+
 
 
 
@@ -44,13 +45,14 @@ import {MessageModule} from 'primeng/message';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ButtonModule,
-    MessagesModule,
-    MessageModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MenubarModule,
+    ButtonModule,
+    SharedModule
+
   ],
   providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuardService, HttpService],
   bootstrap: [AppComponent]
