@@ -6,16 +6,17 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class HttpService {
+
   constructor(private httpClient: HttpClient) {
   }
 
-  putHttp(path: string, object: any): any{
+  post(path: string, object: any): any{
     const token = '?auth=' + localStorage.getItem('token');
     const fullPath = environment.firebase.databaseURL + path + token;
     return this.httpClient.post<any>(fullPath, object);
   }
 
-  getHttp(path: string): any{
+  get(path: string): any{
     const token = '?auth=' + localStorage.getItem('token');
     const fullPath = environment.firebase.databaseURL + path + token;
     return this.httpClient.get<any>(fullPath);

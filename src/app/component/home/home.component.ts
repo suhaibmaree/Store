@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Item} from '../../model/item';
 import {ItemService} from '../../services/item.service';
 import {SellerService} from '../../services/seller.service';
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   // sellers = [new Seller(1, 'Suhaib', 'seller', [1])];
   // buyers = [new Buyer(1, 'Sajie', 'buyer', [3, 2], [1, 2])];
 
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService, private buyerService: BuyerService) {
     this.email = localStorage.getItem('email');
 
   }
@@ -37,13 +37,14 @@ export class HomeComponent implements OnInit {
   }
 
   onGet(): void {
-    this.itemService.getItems()
-      .subscribe(
-        (items: any[]) => console.log(items),
-        (error) => console.log(error)
-      );
+    // this.itemService.getItems()
+    //   .subscribe(
+    //     (items: any[]) => console.log(items),
+    //     (error) => console.log(error)
+    //   );
 
     // this.buyerService.getBuyers();
     // this.sellerService.getSellers();
+    this.buyerService.getBuyers();
   }
 }
