@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import {AppSharedConst} from '../../shared/app-shared-const';
 
 @Component({
   selector: 'app-signin',
@@ -13,9 +14,9 @@ export class SigninComponent implements OnInit {
   form: FormGroup;
 
   constructor(private authService: AuthService, private router: Router) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(AppSharedConst.TOKEN);
     if (token !== null){
-      this.router.navigate(['/home']);
+      this.router.navigate([AppSharedConst.HOME_PATH]);
     }
 
   }
@@ -34,8 +35,8 @@ export class SigninComponent implements OnInit {
   }
 
   checkPassword(form: FormGroup): any {
-    if (form.get('password') != null){
-      if (form.get('password').value.length >= 6) {
+    if (form.get(AppSharedConst.FORM_PASSWORD) != null){
+      if (form.get(AppSharedConst.FORM_PASSWORD).value.length >= 6) {
         return {passwordValid: true};
       }
     }

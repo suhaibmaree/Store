@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import {AppSharedConst} from '../../shared/app-shared-const';
 
 @Component({
   selector: 'app-signup',
@@ -11,9 +12,9 @@ import {Router} from '@angular/router';
 export class SignupComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(AppSharedConst.TOKEN);
     if (token !== null){
-      this.router.navigate(['/home']);
+      this.router.navigate([AppSharedConst.HOME_PATH]);
     }
   }
 

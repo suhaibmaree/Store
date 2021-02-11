@@ -2,21 +2,22 @@ import {Injectable} from '@angular/core';
 import {Seller} from '../model/seller';
 import {HttpService} from './http.service';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
-import {Buyer} from '../model/buyer';
+import {AppSharedConst} from '../app-shared-const';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SellerService {
-  private path = '/data/users/sellers';
+  private path = AppSharedConst.SELLERS_DB_PATH;
   sellersRef: AngularFireList<Seller> = null;
 
-  constructor( private http: HttpService, private db: AngularFireDatabase) {
+  constructor(private http: HttpService, private db: AngularFireDatabase) {
     this.sellersRef = db.list(this.path);
   }
 
   storeSeller(seller: Seller): void {
-    this.http.post(this.path + '.json', seller)
+    this.http.post(this.path + AppSharedConst.JSON, seller)
       .subscribe(
         (data) => {
           console.log(data);
@@ -26,7 +27,7 @@ export class SellerService {
   }
 
   getSellers(): any {
-    return this.http.get(this.path + '.json')
+    return this.http.get(this.path + AppSharedConst.JSON)
       .subscribe(
         (data) => {
           console.log(data);

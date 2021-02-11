@@ -3,12 +3,13 @@ import {Buyer} from '../model/buyer';
 import {HttpService} from './http.service';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {map} from 'rxjs/operators';
+import {AppSharedConst} from '../app-shared-const';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuyerService {
-  private path = '/data/users/buyers';
+  private path = AppSharedConst.BUYERS_DB_PATH;
   buyersRef: AngularFireList<Buyer> = null;
 
   constructor(private http: HttpService, private db: AngularFireDatabase) {
@@ -17,7 +18,7 @@ export class BuyerService {
   }
 
   storeBuyer(buyer: Buyer): void {
-    this.http.post(this.path + '.json', buyer)
+    this.http.post(this.path + AppSharedConst.JSON, buyer)
       .subscribe(
         (data) => {
           console.log(data);
@@ -28,7 +29,7 @@ export class BuyerService {
   }
 
   getBuyers(): any {
-    return this.http.get(this.path + '.json')
+    return this.http.get(this.path + AppSharedConst.JSON)
       .subscribe(
         (data) => {
           console.log(data);

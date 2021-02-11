@@ -6,6 +6,7 @@ import {BuyerService} from '../shared/services/buyer.service';
 import {SellerService} from '../shared/services/seller.service';
 import {Buyer} from '../shared/model/buyer';
 import {Seller} from '../shared/model/seller';
+import {AppSharedConst} from '../shared/app-shared-const';
 
 @Injectable({
   providedIn: 'root'
@@ -24,15 +25,15 @@ export class AuthService {
 
   // Sign in with email/password
   signIn(email, password): any {
-    localStorage.setItem('email', email);
+    localStorage.setItem(AppSharedConst.EMAIL, email);
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         (response) => {
           firebase.auth().currentUser.getIdToken()
             .then((token: string) => {
               this.token = token;
-              localStorage.setItem('token', token);
-              this.router.navigate(['/home']);
+              localStorage.setItem(AppSharedConst.TOKEN, token);
+              this.router.navigate([AppSharedConst.HOME_PATH]);
             });
           console.log(response);
         }
@@ -40,7 +41,7 @@ export class AuthService {
       .catch((error) => {
         window.alert(error.message);
         console.log(error);
-        localStorage.removeItem('email');
+        localStorage.removeItem(AppSharedConst.EMAIL);
       });
   }
 
@@ -53,7 +54,7 @@ export class AuthService {
           firebase.auth().currentUser.getIdToken()
             .then((token: string) => {
               this.token = token;
-              localStorage.setItem('token', token);
+              localStorage.setItem(AppSharedConst.TOKEN, token);
 
               const id = this.afs.createId();
               switch (type) {
@@ -66,7 +67,7 @@ export class AuthService {
                   break;
                 }
               }
-              this.router.navigate(['/home']);
+              this.router.navigate([AppSharedConst.HOME_PATH]);
             });
           console.log(response);
         }
@@ -74,13 +75,13 @@ export class AuthService {
       .catch((error) => {
         console.log(error);
         window.alert(error.message);
-        localStorage.removeItem('email');
+        localStorage.removeItem(AppSharedConst.EMAIL);
       });
   }
 
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(AppSharedConst.TOKEN);
     return token !== null;
   }
 
@@ -89,7 +90,7 @@ export class AuthService {
       firebase.auth().currentUser.getIdToken()
         .then((token: string) => {
           this.token = token;
-          localStorage.setItem('token', token);
+          localStorage.setItem(AppSharedConst.TOKEN, token);
         });
       return this.token;
     }
@@ -102,9 +103,9 @@ export class AuthService {
 
   // Sign out
   signOut(): any {
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
-    this.router.navigate(['/signin']);
+    localStorage.removeItem(AppSharedConst.TOKEN);
+    localStorage.removeItem(AppSharedConst.EMAIL);
+    this.router.navigate([AppSharedConst.SIGN_IN_PATH]);
     this.token = '';
     firebase.auth().signOut();
   }
