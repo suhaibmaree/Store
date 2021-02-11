@@ -21,6 +21,7 @@ import {AuthGuardService} from './auth/auth-guard.service';
 import {HttpService} from './services/http.service';
 import { HomeComponent } from './component/home/home.component';
 import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../environments/environment';
 
 // primeng
@@ -43,12 +44,12 @@ import {MessageModule} from 'primeng/message';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    AngularFireAuthModule,
     ButtonModule,
     MessagesModule,
     MessageModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     ReactiveFormsModule
   ],
   providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuardService, HttpService],

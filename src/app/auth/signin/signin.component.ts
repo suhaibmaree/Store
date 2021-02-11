@@ -14,7 +14,7 @@ export class SigninComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     const token = localStorage.getItem('token');
-    if (token !== 'null'){
+    if (token !== null){
       this.router.navigate(['/home']);
     }
 

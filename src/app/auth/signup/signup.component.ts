@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     const token = localStorage.getItem('token');
-    if (token !== 'null'){
+    if (token !== null){
       this.router.navigate(['/home']);
     }
   }
@@ -22,7 +22,6 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup(form: NgForm): void {
-
     const firstName = form.value.first_name;
     const lastName = form.value.last_name;
     const address = form.value.address;

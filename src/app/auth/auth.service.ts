@@ -42,7 +42,7 @@ export class AuthService {
       .catch((error) => {
         window.alert(error.message);
         console.log(error);
-        localStorage.setItem('email', null);
+        localStorage.removeItem('email');
       });
   }
 
@@ -60,11 +60,11 @@ export class AuthService {
               const id = this.afs.createId();
               switch (type) {
                 case 'buyer': {
-                  this.buyerService.storeBuyer(new Buyer(id, firstName, lastName, type, address, [], []));
+                  this.buyerService.storeBuyer(new Buyer(id, firstName, lastName, type, address, email, [], []));
                   break;
                 }
                 case 'seller': {
-                  this.sellerService.storeSeller(new Seller(id, firstName, lastName, type, address, []));
+                  this.sellerService.storeSeller(new Seller(id, firstName, lastName, type, address, email, []));
                   break;
                 }
               }
@@ -76,14 +76,14 @@ export class AuthService {
       .catch((error) => {
         console.log(error);
         window.alert(error.message);
-        localStorage.setItem('email', null);
+        localStorage.removeItem('email');
       });
   }
 
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
-    const user = localStorage.getItem('token');
-    return user !== null;
+    const token = localStorage.getItem('token');
+    return token !== null;
   }
 
   getToken(): string {
@@ -104,8 +104,8 @@ export class AuthService {
 
   // Sign out
   signOut(): any {
-    localStorage.setItem('token', null);
-    localStorage.setItem('email', null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
     this.router.navigate(['/signin']);
     this.token = '';
     firebase.auth().signOut();

@@ -13,7 +13,9 @@ export class Buyer implements User {
   favorite: number[];
 
 
-  constructor(userId: string, firstName: string, lastName: string, userType: string, address: string, cart: number[], favorite: number[]) {
+  constructor(userId: string, firstName: string, lastName: string,
+              userType: string, address: string, email: string,
+              cart: number[], favorite: number[]) {
     this.userId = userId;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -21,5 +23,6 @@ export class Buyer implements User {
     this.cart = cart;
     this.favorite = favorite;
     this.address = address;
+    this.email =email;
   }
 }
