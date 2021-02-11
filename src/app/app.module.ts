@@ -1,58 +1,39 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import {SignupComponent} from './auth/signup/signup.component';
-import {SigninComponent} from './auth/signin/signin.component';
-import {HeaderComponent} from './component/header/header.component';
 
-import {SellerService} from './services/seller.service';
+import {SellerService} from './shared/services/seller.service';
 import {AuthService} from './auth/auth.service';
-import {BuyerService} from './services/buyer.service';
-import {ItemService} from './services/item.service';
+import {BuyerService} from './shared/services/buyer.service';
+import {ItemService} from './shared/services/item.service';
+import {HttpService} from './shared/services/http.service';
 
 // Firebase services + environment module
+import {environment} from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {AuthGuardService} from './auth/auth-guard.service';
-import {HttpService} from './services/http.service';
-import { HomeComponent } from './component/home/home.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {environment} from '../environments/environment';
 
-// primeng
-import {MenubarModule} from 'primeng/menubar';
-import {ButtonModule} from 'primeng/button';
-import {SharedModule} from 'primeng/api';
-
-
-
+import {AuthModule} from './auth/auth-module';
+import {HomeModule} from './component/home/home-module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
-    SigninComponent,
-    HeaderComponent,
-    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    ReactiveFormsModule,
-    MenubarModule,
-    ButtonModule,
-    SharedModule
-
+    AuthModule,
+    HomeModule
   ],
   providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuardService, HttpService],
   bootstrap: [AppComponent]

@@ -13,13 +13,10 @@ export class HeaderComponent implements OnInit {
   items: MenuItem[];
   searchValue: string;
 
-
   constructor(public authService: AuthService, public router: Router) {
   }
 
   ngOnInit(): void {
-
-    
 
     this.items = [
       {

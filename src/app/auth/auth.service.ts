@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import firebase from 'firebase';
-import {BuyerService} from '../services/buyer.service';
-import {SellerService} from '../services/seller.service';
-import {Buyer} from '../model/buyer';
-import {Seller} from '../model/seller';
+import {BuyerService} from '../shared/services/buyer.service';
+import {SellerService} from '../shared/services/seller.service';
+import {Buyer} from '../shared/model/buyer';
+import {Seller} from '../shared/model/seller';
 
 @Injectable({
   providedIn: 'root'
