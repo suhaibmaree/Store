@@ -5,6 +5,7 @@ export class AppSharedConst {
   static AUTH = '?auth=';
   static TOKEN = 'token';
   static EMAIL = 'email';
+  static USER = 'user';
   static HOME_PATH = '/home';
   static PROFILE_PATH = '/home/profile';
   static SIGN_IN_PATH = '/signin';

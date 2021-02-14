@@ -11,11 +11,7 @@ import {AppSharedConst} from '../../shared/app-shared-const';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) {
-    const token = localStorage.getItem(AppSharedConst.TOKEN);
-    if (token !== null){
-      this.router.navigate([AppSharedConst.HOME_PATH]);
-    }
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {

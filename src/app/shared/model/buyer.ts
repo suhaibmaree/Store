@@ -23,6 +23,6 @@ export class Buyer implements User {
     this.cart = cart;
     this.favorite = favorite;
     this.address = address;
-    this.email =email;
+    this.email = email;
   }
 }

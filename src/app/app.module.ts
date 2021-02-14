@@ -14,7 +14,6 @@ import {HttpService} from './shared/services/http.service';
 // Firebase services + environment module
 import {environment} from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {AuthGuard} from './shared/guard/auth-guard';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 
@@ -35,7 +34,7 @@ import {HomeModule} from './component/home/home-module';
     AuthModule,
     HomeModule
   ],
-  providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuard, HttpService],
+  providers: [ItemService, SellerService, BuyerService, AuthService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

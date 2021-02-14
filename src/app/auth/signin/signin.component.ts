@@ -13,13 +13,7 @@ export class SigninComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {
-    const token = localStorage.getItem(AppSharedConst.TOKEN);
-    if (token !== null){
-      this.router.navigate([AppSharedConst.HOME_PATH]);
-    }
-
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({

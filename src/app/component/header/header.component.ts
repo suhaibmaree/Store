@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AppSharedConst} from '../../shared/app-shared-const';
 import {BuyerService} from '../../shared/services/buyer.service';
 import {map} from 'rxjs/operators';
+import {SellerService} from '../../shared/services/seller.service';
 
 @Component({
   selector: 'app-header',
@@ -85,12 +86,13 @@ export class HeaderComponent implements OnInit {
     }
   ];
 
-  constructor(public authService: AuthService, public router: Router, public buyerService: BuyerService) {
+  constructor(public authService: AuthService, public router: Router,
+              public buyerService: BuyerService, public sellerService: SellerService) {
   }
 
   ngOnInit(): void {
     this.email = localStorage.getItem(AppSharedConst.EMAIL);
-    this.getUserType();
+    this.getUser();
     this.items = this.buyerItems;
   }
 
@@ -98,11 +100,11 @@ export class HeaderComponent implements OnInit {
     this.authService.signOut();
   }
 
-  profile(): void{
+  profile(): void {
     this.router.navigate([AppSharedConst.PROFILE_PATH]);
   }
 
-  getUserType(): void {
+  getUser(): void {
 
     this.buyerService.getAll()
       .snapshotChanges()
@@ -115,13 +117,27 @@ export class HeaderComponent implements OnInit {
       console.log(data);
       data.map((x) => {
         if (x.email === this.email) {
-          console.log('user type: ' + x.userType);
+          localStorage.setItem('user', JSON.stringify(x));
           this.isCartValid = true;
         } else {
           this.items = this.sellerItems;
         }
       });
     });
+
+    if (!this.isCartValid) {
+      this.sellerService.getAll()
+        .snapshotChanges()
+        .pipe(
+          map(list => list.map(c => (c.payload.val())))).subscribe(data => {
+        console.log(data);
+        data.map((x) => {
+          if (x.email === this.email) {
+            localStorage.setItem(AppSharedConst.USER, JSON.stringify(x));
+          }
+        });
+      });
+    }
 
   }
 }

@@ -10,6 +10,7 @@ import {HomeRoutingModule} from './home-routing-module';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ProfileComponent} from '../profile/profile.component';
+import {HomeAuthGuard} from '../../shared/guard/home-auth-guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {ProfileComponent} from '../profile/profile.component';
     HomeRoutingModule,
     FormsModule,
     CommonModule
-  ]
+  ],
+  providers: [HomeAuthGuard],
 })
 
 export class HomeModule{

@@ -5,6 +5,7 @@ import {SignupComponent} from './signup/signup.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {AuthRoutingModule} from './auth-routing-module';
+import {SignInAuthGuard} from '../shared/guard/signin-auth-guard';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {AuthRoutingModule} from './auth-routing-module';
     ReactiveFormsModule,
     FormsModule,
     AuthRoutingModule
-  ]
+  ],
+  providers: [SignInAuthGuard],
 })
 
 export class AuthModule{

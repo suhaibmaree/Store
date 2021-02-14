@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  signUp(email, password, firstName: any, lastName: any, address: any, type: any): any {
+  signUp(email, password, firstName, lastName, address, type): any {
     localStorage.setItem('email', email);
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(
@@ -105,6 +105,7 @@ export class AuthService {
   signOut(): any {
     localStorage.removeItem(AppSharedConst.TOKEN);
     localStorage.removeItem(AppSharedConst.EMAIL);
+    localStorage.removeItem(AppSharedConst.USER);
     this.router.navigate([AppSharedConst.SIGN_IN_PATH]);
     this.token = '';
     firebase.auth().signOut();
