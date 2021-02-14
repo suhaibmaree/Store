@@ -9,11 +9,13 @@ import {SharedModule} from 'primeng/api';
 import {HomeRoutingModule} from './home-routing-module';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {ProfileComponent} from '../profile/profile.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     MenubarModule,

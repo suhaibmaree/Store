@@ -20,12 +20,10 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 import {AuthModule} from './auth/auth-module';
 import {HomeModule} from './component/home/home-module';
-import { ProfileComponent } from './component/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
   ],
   imports: [
     BrowserModule,

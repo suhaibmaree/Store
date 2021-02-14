@@ -1,0 +1,25 @@
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="inner-adjust">
+
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">User Profile</h1>
+    </div>
+    <!-- Show user data when logged in -->
+    <div class="row" >
+      <div class="col-md-12">
+        <div class="media">
+          <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="https://lh3.googleusercontent.com/proxy/27gPiEU9eMOuRt9vYGtr4i7vAcjwhcQLb9J7C54tkB9Pr_fqZ-pxSiu0g5tSuTrTiqXhNq0yRd_lIcG8VgsTnUajyqRXMqU3OPSAj4nhXRaZhSlgSdqfU-es4k6x"
+               alt="{{user?.firstName}} {{user?.lastName}}">
+          <div class="media-body">
+            <h1>Hello: <strong>{{(user?.firstName) ? user.firstName : 'User'}}</strong></h1>
+            <p>User ID: <strong>{{user?.userId}}</strong></p>
+            <p>Email: <strong>{{user?.email}}</strong></p>
+            <p>Email Verified: <strong>{{user?.email}}</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>

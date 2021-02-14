@@ -69,6 +69,7 @@ export class HeaderComponent implements OnInit {
         {
           label: 'Address',
           icon: 'pi pi-fw pi-map-marker',
+          command: () => this.profile()
         },
         {
           label: 'Delete account',
@@ -95,6 +96,10 @@ export class HeaderComponent implements OnInit {
 
   signOut(): any {
     this.authService.signOut();
+  }
+
+  profile(): void{
+    this.router.navigate([AppSharedConst.PROFILE_PATH]);
   }
 
   getUserType(): void {
