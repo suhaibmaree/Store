@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {AuthService} from '../../auth/auth.service';
 import {Router} from '@angular/router';
-
+import {AppSharedConst} from '../../shared/app-shared-const';
+import {BuyerService} from '../../shared/services/buyer.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +14,14 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
   items: MenuItem[];
   searchValue: string;
+  email: string;
+  isCartValid: boolean;
 
-  constructor(public authService: AuthService, public router: Router) {
-  }
+  constructor(public authService: AuthService, public router: Router, public buyerService: BuyerService) {}
 
   ngOnInit(): void {
-
+    this.email = localStorage.getItem(AppSharedConst.EMAIL);
+    this.getUserType();
     this.items = [
       {
         label: 'Events',
@@ -59,8 +63,28 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
-
   signOut(): any {
     this.authService.signOut();
+  }
+
+  getUserType(): void {
+
+    this.buyerService.getAll()
+      .snapshotChanges()
+      .pipe(
+        map(
+          list => list.map(c => (c.payload.val())
+          )
+        )
+      ).subscribe(data => {
+      console.log(data);
+      data.map((x) => {
+        if (x.email === this.email) {
+          console.log('user type: ' + x.userType);
+          this.isCartValid = true;
+        }
+      });
+    });
+
   }
 }

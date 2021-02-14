@@ -37,7 +37,7 @@ export class SellerService {
       );
   }
 
-  getAll(): any {
+  getAll(): AngularFireList<Seller> {
     return this.sellersRef;
   }
 

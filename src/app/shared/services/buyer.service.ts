@@ -39,7 +39,7 @@ export class BuyerService {
       );
   }
 
-  getAll(): any {
+  getAll(): AngularFireList<Buyer> {
     return this.buyersRef;
   }
 

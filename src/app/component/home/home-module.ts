@@ -7,6 +7,8 @@ import {MenubarModule} from 'primeng/menubar';
 import {ButtonModule} from 'primeng/button';
 import {SharedModule} from 'primeng/api';
 import {HomeRoutingModule} from './home-routing-module';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {HomeRoutingModule} from './home-routing-module';
     MenubarModule,
     ButtonModule,
     SharedModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    FormsModule,
+    CommonModule
   ]
 })
 
