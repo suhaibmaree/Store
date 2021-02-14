@@ -16,51 +16,76 @@ export class HeaderComponent implements OnInit {
   searchValue: string;
   email: string;
   isCartValid: boolean;
+  sellerItems = [
+    {
+      label: 'Account',
+      icon: 'pi pi-fw pi-user',
+      items: [
+        {
+          label: 'Seller Items',
+          icon: 'pi pi-fw pi-pencil',
+          items: [
+            {
+              label: 'Add',
+              icon: 'pi pi-fw pi-plus-circle'
+            },
+            {
+              label: 'Delete',
+              icon: 'pi pi-fw pi-minus-circle'
+            },
+
+          ]
+        },
+        {
+          label: 'Address',
+          icon: 'pi pi-fw pi-map-marker',
+        },
+        {
+          label: 'Delete account',
+          icon: 'pi pi-fw pi-user-minus',
+        }
+
+      ]
+    },
+    {
+      label: 'Quit',
+      icon: 'pi pi-fw pi-sign-in',
+      command: () => this.signOut()
+    }
+  ];
+  buyerItems = [
+    {
+      label: 'Account',
+      icon: 'pi pi-fw pi-user',
+      items: [
+        {
+          label: 'My Orders',
+          icon: 'pi pi-fw pi-tags',
+        },
+        {
+          label: 'Favorit',
+          icon: 'pi pi-fw pi-heart',
+        },
+        {
+          label: 'Delete account',
+          icon: 'pi pi-fw pi-user-minus',
+        }
+
+      ]
+    },
+    {
+      label: 'Quit',
+      icon: 'pi pi-fw pi-sign-in',
+      command: () => this.signOut()
+    }
+  ];
 
   constructor(public authService: AuthService, public router: Router, public buyerService: BuyerService) {}
 
   ngOnInit(): void {
     this.email = localStorage.getItem(AppSharedConst.EMAIL);
     this.getUserType();
-    this.items = [
-      {
-        label: 'Events',
-        icon: 'pi pi-fw pi-calendar',
-        style: '',
-        items: [
-          {
-            label: 'Edit',
-            icon: 'pi pi-fw pi-pencil',
-            items: [
-              {
-                label: 'Save',
-                icon: 'pi pi-fw pi-calendar-plus'
-              },
-              {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-calendar-minus'
-              },
-
-            ]
-          },
-          {
-            label: 'Archieve',
-            icon: 'pi pi-fw pi-calendar-times',
-            items: [
-              {
-                label: 'Remove',
-                icon: 'pi pi-fw pi-calendar-minus'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        label: 'Quit',
-        icon: 'pi pi-fw pi-power-off',
-        command: () => this.signOut()
-      }
-    ];
+    this.items = this.buyerItems;
   }
 
   signOut(): any {
@@ -82,6 +107,8 @@ export class HeaderComponent implements OnInit {
         if (x.email === this.email) {
           console.log('user type: ' + x.userType);
           this.isCartValid = true;
+        }else {
+          this.items = this.sellerItems;
         }
       });
     });
