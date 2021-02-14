@@ -14,16 +14,18 @@ import {HttpService} from './shared/services/http.service';
 // Firebase services + environment module
 import {environment} from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {AuthGuardService} from './auth/auth-guard.service';
+import {AuthGuard} from './shared/guard/auth-guard';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 import {AuthModule} from './auth/auth-module';
 import {HomeModule} from './component/home/home-module';
+import { ProfileComponent } from './component/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import {HomeModule} from './component/home/home-module';
     AuthModule,
     HomeModule
   ],
-  providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuardService, HttpService],
+  providers: [ItemService, SellerService, BuyerService, AuthService, AuthGuard, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

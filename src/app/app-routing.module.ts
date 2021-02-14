@@ -4,7 +4,6 @@ import {HomeComponent} from './component/home/home.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/signin', pathMatch: 'full'},
-  // {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({

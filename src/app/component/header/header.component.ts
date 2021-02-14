@@ -67,6 +67,10 @@ export class HeaderComponent implements OnInit {
           icon: 'pi pi-fw pi-heart',
         },
         {
+          label: 'Address',
+          icon: 'pi pi-fw pi-map-marker',
+        },
+        {
           label: 'Delete account',
           icon: 'pi pi-fw pi-user-minus',
         }
@@ -80,7 +84,8 @@ export class HeaderComponent implements OnInit {
     }
   ];
 
-  constructor(public authService: AuthService, public router: Router, public buyerService: BuyerService) {}
+  constructor(public authService: AuthService, public router: Router, public buyerService: BuyerService) {
+  }
 
   ngOnInit(): void {
     this.email = localStorage.getItem(AppSharedConst.EMAIL);
@@ -107,7 +112,7 @@ export class HeaderComponent implements OnInit {
         if (x.email === this.email) {
           console.log('user type: ' + x.userType);
           this.isCartValid = true;
-        }else {
+        } else {
           this.items = this.sellerItems;
         }
       });
