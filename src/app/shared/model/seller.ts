@@ -8,6 +8,7 @@ export class Seller implements User{
   userType: string;
   address: string;
   items: number[];
+  key: string;
 
   constructor(userId: string, firstName: string, lastName: string,
               userType: string, address: string, email: string, items: number[]) {

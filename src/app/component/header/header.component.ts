@@ -6,6 +6,7 @@ import {AppSharedConst} from '../../shared/app-shared-const';
 import {BuyerService} from '../../shared/services/buyer.service';
 import {map} from 'rxjs/operators';
 import {SellerService} from '../../shared/services/seller.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
   sellerItems = [
     {
       label: 'Account',
-      icon: 'pi pi-fw pi-user',
+      icon: 'pi pi-fw pi-th-large',
       items: [
         {
           label: 'Seller Items',
@@ -38,8 +39,9 @@ export class HeaderComponent implements OnInit {
           ]
         },
         {
-          label: 'Address',
-          icon: 'pi pi-fw pi-map-marker',
+          label: 'Profile',
+          icon: 'pi pi-fw pi-user',
+          command: () => this.profile()
         },
         {
           label: 'Delete account',
@@ -47,6 +49,11 @@ export class HeaderComponent implements OnInit {
         }
 
       ]
+    },
+    {
+      label: 'Home',
+      icon: 'pi pi-fw pi-home',
+      command: () => this.router.navigate(['/home'])
     },
     {
       label: 'Quit',
@@ -57,7 +64,7 @@ export class HeaderComponent implements OnInit {
   buyerItems = [
     {
       label: 'Account',
-      icon: 'pi pi-fw pi-user',
+      icon: 'pi pi-fw pi-th-large',
       items: [
         {
           label: 'My Orders',
@@ -68,8 +75,8 @@ export class HeaderComponent implements OnInit {
           icon: 'pi pi-fw pi-heart',
         },
         {
-          label: 'Address',
-          icon: 'pi pi-fw pi-map-marker',
+          label: 'Profile',
+          icon: 'pi pi-fw pi-user',
           command: () => this.profile()
         },
         {
@@ -78,6 +85,11 @@ export class HeaderComponent implements OnInit {
         }
 
       ]
+    },
+    {
+      label: 'Home',
+      icon: 'pi pi-fw pi-home',
+      command: () => this.router.navigate(['/home'])
     },
     {
       label: 'Quit',
@@ -109,15 +121,18 @@ export class HeaderComponent implements OnInit {
     this.buyerService.getAll()
       .snapshotChanges()
       .pipe(
-        map(
-          list => list.map(c => (c.payload.val())
+        map(changes =>
+          changes.map(c =>
+            ({ key: c.payload.key, ...c.payload.val() })
           )
         )
       ).subscribe(data => {
       console.log(data);
       data.map((x) => {
         if (x.email === this.email) {
-          localStorage.setItem('user', JSON.stringify(x));
+          localStorage.setItem(AppSharedConst.USER, JSON.stringify(x));
+          localStorage.setItem(AppSharedConst.USER_KEY, x.key);
+
           this.isCartValid = true;
         } else {
           this.items = this.sellerItems;
@@ -129,11 +144,18 @@ export class HeaderComponent implements OnInit {
       this.sellerService.getAll()
         .snapshotChanges()
         .pipe(
-          map(list => list.map(c => (c.payload.val())))).subscribe(data => {
+          map(changes =>
+            changes.map(c =>
+              ({ key: c.payload.key, ...c.payload.val() })
+            )
+          )
+        )
+        .subscribe(data => {
         console.log(data);
         data.map((x) => {
           if (x.email === this.email) {
             localStorage.setItem(AppSharedConst.USER, JSON.stringify(x));
+            localStorage.setItem(AppSharedConst.USER_KEY, x.key);
           }
         });
       });

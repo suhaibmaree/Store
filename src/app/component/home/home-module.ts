@@ -11,6 +11,8 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ProfileComponent} from '../profile/profile.component';
 import {HomeAuthGuard} from '../../shared/guard/home-auth-guard';
+import {DialogModule} from 'primeng/dialog';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {HomeAuthGuard} from '../../shared/guard/home-auth-guard';
     SharedModule,
     HomeRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    DialogModule,
+    BrowserAnimationsModule
   ],
   providers: [HomeAuthGuard],
 })

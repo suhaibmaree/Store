@@ -11,6 +11,7 @@ export class Buyer implements User {
   address: string;
   cart: number[];
   favorite: number[];
+  key: string;
 
 
   constructor(userId: string, firstName: string, lastName: string,
