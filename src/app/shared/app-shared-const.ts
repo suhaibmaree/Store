@@ -5,6 +5,8 @@ export class AppSharedConst {
   static AUTH = '?auth=';
   static TOKEN = 'token';
   static EMAIL = 'email';
+  static BUYER = 'buyer';
+  static SELLER = 'seller';
   static USER = 'user';
   static USER_KEY = 'key';
   static HOME_PATH = '/home';
