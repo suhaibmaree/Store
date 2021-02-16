@@ -7,18 +7,21 @@ import {MenubarModule} from 'primeng/menubar';
 import {ButtonModule} from 'primeng/button';
 import {SharedModule} from 'primeng/api';
 import {HomeRoutingModule} from './home-routing-module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ProfileComponent} from '../profile/profile.component';
 import {HomeAuthGuard} from '../../shared/guard/home-auth-guard';
 import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AddItemComponent} from '../add-item/add-item.component';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddItemComponent,
   ],
   imports: [
     MenubarModule,
@@ -28,7 +31,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FormsModule,
     CommonModule,
     DialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    InputTextareaModule
   ],
   providers: [HomeAuthGuard],
 })

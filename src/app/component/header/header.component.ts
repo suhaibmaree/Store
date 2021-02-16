@@ -28,7 +28,8 @@ export class HeaderComponent implements OnInit {
           items: [
             {
               label: 'Add',
-              icon: 'pi pi-fw pi-plus-circle'
+              icon: 'pi pi-fw pi-plus-circle',
+              command: () => this.router.navigate(['/home/add-item'])
             },
             {
               label: 'Delete',

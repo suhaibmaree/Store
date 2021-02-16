@@ -3,13 +3,21 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home.component';
 import {HomeAuthGuard} from '../../shared/guard/home-auth-guard';
 import {ProfileComponent} from '../profile/profile.component';
+import {CardComponent} from '../card/card.component';
+import {AddItemComponent} from '../add-item/add-item.component';
 
 const homeRouts: Routes = [
   {
     path: 'home', component: HomeComponent,
-    children: [{path: 'profile', component: ProfileComponent}],
+    children: [
+      {path: 'profile', component: ProfileComponent},
+      {path: 'card', component: CardComponent},
+      {path: 'add-item', component: AddItemComponent}
+
+    ]
+    ,
     canActivate: [HomeAuthGuard]
-  }
+  },
 ];
 
 @NgModule({

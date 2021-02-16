@@ -1,0 +1,31 @@
+<body>
+<div class="add-item-form">
+  <form [formGroup]="form" (ngSubmit)="addItem()">
+    <h2>Add Item</h2>
+    <p class="lead">Here you can add item to your store</p>
+
+    <div class="p-field">
+      <label for="title">Title</label><br>
+      <input  id="title" type="text" aria-describedby="title-help" class="ng-invalid ng-dirty width-input" pInputText/>
+      <small id="title-help" class="p-error"></small>
+    </div>
+
+    <div class="p-field">
+      <label for="cover">Cover Image</label><br>
+      <input id="cover" type="text" aria-describedby="cover-help" class="ng-invalid ng-dirty width-input" pInputText/>
+      <small id="cover-help" class="p-error"></small>
+    </div>
+    <br>
+    <span class="p-float-label">
+            <textarea id="description" rows="2" cols="42" pInputTextarea autoResize="autoResize"></textarea>
+            <label for="description">description</label>
+        </span>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Add Item</button>
+    </div>
+    <p class="small text-center">By clicking the Add Item button, you agree to our Terms Conditions, and Privacy
+      Policy.</p>
+  </form>
+</div>
+</body>
