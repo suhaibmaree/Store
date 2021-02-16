@@ -79,7 +79,7 @@ export class AuthService {
       });
   }
 
-  // Returns true when user is looged in and email is verified
+  // Returns true when user is logged in and email is verified
   get isLoggedIn(): boolean {
     const token = localStorage.getItem(AppSharedConst.TOKEN);
     return token !== null;
@@ -106,6 +106,7 @@ export class AuthService {
     localStorage.removeItem(AppSharedConst.TOKEN);
     localStorage.removeItem(AppSharedConst.EMAIL);
     localStorage.removeItem(AppSharedConst.USER);
+    localStorage.removeItem(AppSharedConst.USER_KEY);
     this.router.navigate([AppSharedConst.SIGN_IN_PATH]);
     this.token = '';
     firebase.auth().signOut();

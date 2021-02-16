@@ -6,7 +6,6 @@ import {AppSharedConst} from '../../shared/app-shared-const';
 import {BuyerService} from '../../shared/services/buyer.service';
 import {map} from 'rxjs/operators';
 import {SellerService} from '../../shared/services/seller.service';
-import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-header',

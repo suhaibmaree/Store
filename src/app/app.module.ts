@@ -19,6 +19,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 import {AuthModule} from './auth/auth-module';
 import {HomeModule} from './component/home/home-module';
+import {ItemCardModule} from './component/card/item-card-module';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {HomeModule} from './component/home/home-module';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AuthModule,
-    HomeModule
+    HomeModule,
+    ItemCardModule
   ],
   providers: [ItemService, SellerService, BuyerService, AuthService, HttpService],
   bootstrap: [AppComponent]
