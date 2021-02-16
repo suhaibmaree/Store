@@ -1,13 +1,14 @@
-<p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}" styleClass="p-card-shadow">
+<p-card [header]="title" subheader="" [style]="{width: '360px'}" styleClass="p-card-shadow">
   <ng-template pTemplate="header">
-    <img alt="Card" src="assets/showcase/images/usercard.png">
+    <div class="relative">
+      <button pButton pRipple (click)="addToWishList()" type="button" icon="pi pi-heart" class="p-button-rounded p-button-help absolute"></button>
+      <img alt="Card" style="margin-bottom: 5px" src="https://images.assetsdelivery.com/compings_v2/cienpies/cienpies1512/cienpies151200080.jpg">
+      <button pButton icon="pi pi-dollar" pRipple type="" [label]="price" class="p-button-rounded p-button-info"
+              style="margin-right: 5px; float: right"></button>
+    </div>
   </ng-template>
-  <p-rating [ngModel]="rating" readonly="true" stars="5" [cancel]="false"></p-rating>  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam
-    deserunt
-    quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
-  <ng-template pTemplate="footer">
-    <p-button label="Save" icon="pi pi-check"></p-button>
-    <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
-              [style]="{'margin-left': '.5em'}"></p-button>
-  </ng-template>
+
+  <p-rating [ngModel]="rating" readonly="true" stars="5" [cancel]="false"></p-rating>
+  <p>{{description}}</p>
+  <button pButton pRipple (click)="addToCart()" type="button" label="Add To Cart" class="p-button-rounded p-button-success"></button>
 </p-card>

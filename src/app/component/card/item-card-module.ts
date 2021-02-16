@@ -6,6 +6,7 @@ import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {RatingModule} from 'primeng/rating';
 import {FormsModule} from '@angular/forms';
+import {RippleModule} from 'primeng/ripple';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {FormsModule} from '@angular/forms';
     ButtonModule,
     CardModule,
     RatingModule,
-    FormsModule
+    FormsModule,
+    RippleModule
   ],
   providers: [
 
