@@ -4,22 +4,36 @@
     <h2>Add Item</h2>
     <p class="lead">Here you can add item to your store</p>
 
-    <div class="p-field">
+    <div class="form-group">
       <label for="title">Title</label><br>
-      <input  id="title" type="text" aria-describedby="title-help" class="ng-invalid ng-dirty width-input" pInputText/>
+      <input id="title" type="text" aria-describedby="title-help" class="ng-invalid ng-dirty width-input form-control"
+             pInputText/>
       <small id="title-help" class="p-error"></small>
     </div>
 
-    <div class="p-field">
+    <div class="form-group">
       <label for="cover">Cover Image</label><br>
-      <input id="cover" type="text" aria-describedby="cover-help" class="ng-invalid ng-dirty width-input" pInputText/>
+      <input id="cover" type="text" aria-describedby="cover-help" class="ng-invalid ng-dirty width-input form-control"
+             pInputText/>
       <small id="cover-help" class="p-error"></small>
     </div>
-    <br>
+
+    <div class="form-group">
+      <label for="price">price</label><br>
+      <span class="p-input-icon-left ">
+        <i class="pi pi-dollar"></i>
+        <input id="price" type="number" aria-describedby="price-help" class="ng-invalid ng-dirty width-input form-control"
+               pInputText/>
+      </span>
+      <small id="price-help" class="p-error"></small>
+    </div>
+
+    <div class="form-group">
     <span class="p-float-label">
-            <textarea id="description" rows="2" cols="42" pInputTextarea autoResize="autoResize"></textarea>
-            <label for="description">description</label>
-        </span>
+      <textarea id="description" rows="2" cols="42" pInputTextarea autoResize="autoResize"></textarea>
+      <label for="description">description</label>
+    </span>
+    </div>
 
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-block btn-lg">Add Item</button>
