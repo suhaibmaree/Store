@@ -1,0 +1,64 @@
+<div class="background">
+  <button (click)="showSddItem()" pButton pRipple type="button" icon="pi pi-plus"
+          class="p-button-rounded p-button-warning add-button"></button>
+  <p-dialog header="Add Item" [(visible)]="displayAddItem" [style]="{width: '450px'}" [baseZIndex]="10000">
+    <div class="add-item-form">
+      <form [formGroup]="form" (ngSubmit)="addItem()">
+        <p class="lead">Here you can add item to your store</p>
+
+        <div class="form-group">
+          <label for="title">Title</label><br>
+          <input id="title" type="text" aria-describedby="title-help"
+                 class="ng-invalid ng-dirty width-input form-control"
+                 pInputText formControlName="title" placeholder="text"
+                 [(ngModel)]="title"/>
+          <small id="title-help" class="p-error"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="cover">Cover Image</label><br>
+          <input id="cover" type="text" aria-describedby="cover-help"
+                 class="ng-invalid ng-dirty width-input form-control"
+                 pInputText placeholder="Link" formControlName="cover"
+                 [(ngModel)]="cover"/>
+          <small id="cover-help" class="p-error"></small>
+        </div>
+
+        <div class="p-field">
+
+        <span class="p-float-label">
+          <textarea [(ngModel)]="description" id="description" rows="2" cols="51" pInputTextarea autoResize="autoResize"
+                    formControlName="description"></textarea>
+          <label for="description">Item Description</label>
+        </span>
+        </div>
+
+
+        <div class=" p-field">
+          <label for="price">Price</label><br>
+          <p-inputNumber formControlName="price" [(ngModel)]="price" [showButtons]="true" id="price" mode="currency"
+                         currency="USD">
+          </p-inputNumber>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Item Category</label><br>
+          <p-dropdown id="category" [options]="categories" [(ngModel)]="selectedCategory"
+                      placeholder="Select item category"
+                      [showClear]="true" formControlName="category"></p-dropdown>
+        </div>
+
+        <div class="form-group">
+          <label for="stock">Items In Stock</label><br>
+          <p-inputNumber [(ngModel)]="itemsInStock" mode="decimal" id="stock" [useGrouping]="false" placeholder="0"
+                         formControlName="itemsInStock">
+          </p-inputNumber>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Add Item</button>
+        </div>
+      </form>
+    </div>
+  </p-dialog>
+</div>
