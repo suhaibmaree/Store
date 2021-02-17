@@ -6,6 +6,8 @@ import {Item} from '../../shared/model/item';
 import {ItemService} from '../../shared/services/item.service';
 import {SellerService} from '../../shared/services/seller.service';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {map} from 'rxjs/operators';
+import {User} from '../../shared/model/user';
 
 @Component({
   selector: 'app-seller-dashboard',
@@ -17,10 +19,10 @@ export class SellerDashboardComponent implements OnInit {
   form: FormGroup;
   seller: Seller;
   categories = [
-    { label: 'Accessories', value: 'Accessories' },
-    { label: 'Fitness', value: 'Fitness' },
-    { label: 'Clothing', value: 'Clothing' },
-    { label: 'Electronics', value: 'Electronics' },
+    {label: 'Accessories', value: 'Accessories'},
+    {label: 'Fitness', value: 'Fitness'},
+    {label: 'Clothing', value: 'Clothing'},
+    {label: 'Electronics', value: 'Electronics'},
   ];
   selectedCategory: string;
   price: number;
@@ -28,8 +30,10 @@ export class SellerDashboardComponent implements OnInit {
   description: string;
   cover: string;
   title: string;
+  items: Item[];
 
   constructor(public itemService: ItemService, public sellerService: SellerService, private afs: AngularFirestore) {
+
   }
 
   ngOnInit(): void {
@@ -44,6 +48,8 @@ export class SellerDashboardComponent implements OnInit {
     });
     this.price = 0;
     this.itemsInStock = 0;
+
+    this.getItems();
   }
 
   addItem(): void {
@@ -74,9 +80,26 @@ export class SellerDashboardComponent implements OnInit {
     this.description = '';
     this.selectedCategory = '';
     this.itemsInStock = 0;
+
+    this.getItems();
   }
 
   showSddItem(): void {
     this.displayAddItem = true;
+  }
+
+  getItems(): void {
+    this.itemService.getAll()
+      .snapshotChanges()
+      .pipe(
+        map(changes =>
+          changes.map(c =>
+            ({key: c.payload.key, ...c.payload.val()})
+          )
+        )
+      ).subscribe(value => {
+      this.items = value;
+    });
+
   }
 }

@@ -100,12 +100,11 @@ export class HeaderComponent implements OnInit {
 
   constructor(public authService: AuthService, public router: Router,
               public buyerService: BuyerService, public sellerService: SellerService) {
+    this.getUser();
   }
 
   ngOnInit(): void {
     this.email = localStorage.getItem(AppSharedConst.EMAIL);
-    this.getUser();
-    this.items = this.buyerItems;
   }
 
   signOut(): any {
@@ -132,10 +131,8 @@ export class HeaderComponent implements OnInit {
         if (x.email === this.email) {
           localStorage.setItem(AppSharedConst.USER, JSON.stringify(x));
           localStorage.setItem(AppSharedConst.USER_KEY, x.key);
-
+          this.items = this.buyerItems;
           this.isCartValid = true;
-        } else {
-          this.items = this.sellerItems;
         }
       });
     });
@@ -156,6 +153,7 @@ export class HeaderComponent implements OnInit {
           if (x.email === this.email) {
             localStorage.setItem(AppSharedConst.USER, JSON.stringify(x));
             localStorage.setItem(AppSharedConst.USER_KEY, x.key);
+            this.items = this.sellerItems;
           }
         });
       });

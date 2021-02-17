@@ -19,8 +19,10 @@ import {DropdownModule} from 'primeng/dropdown';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {SellerDashboardComponent} from '../seller-dashboard/seller-dashboard.component';
 import {RippleModule} from 'primeng/ripple';
-import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {InputTextModule} from 'primeng/inputtext';
+import {DataViewModule} from 'primeng/dataview';
+import {RatingModule} from 'primeng/rating';
+
 
 
 @NgModule({
@@ -45,8 +47,9 @@ import {InputTextModule} from 'primeng/inputtext';
     DropdownModule,
     InputNumberModule,
     RippleModule,
-    DynamicDialogModule,
-    InputTextModule
+    InputTextModule,
+    DataViewModule,
+    RatingModule
   ],
   providers: [HomeAuthGuard],
 })

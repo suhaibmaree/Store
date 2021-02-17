@@ -61,4 +61,13 @@
       </form>
     </div>
   </p-dialog>
+
+  <p-dataView [value]="items" class="item-data-view">
+    <ng-template let-item pTemplate="listItem">
+      <div>
+        {{item.id}}
+      </div>
+    </ng-template>
+  </p-dataView>
+
 </div>
