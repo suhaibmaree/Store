@@ -43,6 +43,7 @@ export class AddItemComponent implements OnInit {
   }
 
   addItem(): void {
+
     const imagePath = this.form.value.cover;
     const title = this.form.value.title;
     const rate = 3;

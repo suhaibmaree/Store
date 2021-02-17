@@ -17,6 +17,11 @@ import {AddItemComponent} from '../add-item/add-item.component';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {SellerDashboardComponent} from '../seller-dashboard/seller-dashboard.component';
+import {RippleModule} from 'primeng/ripple';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {InputTextModule} from 'primeng/inputtext';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +29,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
     HomeComponent,
     ProfileComponent,
     AddItemComponent,
+    SellerDashboardComponent
   ],
   imports: [
     MenubarModule,
@@ -37,7 +43,10 @@ import {InputNumberModule} from 'primeng/inputnumber';
     ReactiveFormsModule,
     InputTextareaModule,
     DropdownModule,
-    InputNumberModule
+    InputNumberModule,
+    RippleModule,
+    DynamicDialogModule,
+    InputTextModule
   ],
   providers: [HomeAuthGuard],
 })

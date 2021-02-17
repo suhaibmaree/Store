@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
     {
       label: 'Home',
       icon: 'pi pi-fw pi-home',
-      command: () => this.router.navigate(['/home'])
+      command: () => this.router.navigate(['/home/seller-dashboard'])
     },
     {
       label: 'Quit',

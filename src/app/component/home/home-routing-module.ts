@@ -5,6 +5,7 @@ import {HomeAuthGuard} from '../../shared/guard/home-auth-guard';
 import {ProfileComponent} from '../profile/profile.component';
 import {CardComponent} from '../card/card.component';
 import {AddItemComponent} from '../add-item/add-item.component';
+import {SellerDashboardComponent} from '../seller-dashboard/seller-dashboard.component';
 
 const homeRouts: Routes = [
   {
@@ -12,10 +13,9 @@ const homeRouts: Routes = [
     children: [
       {path: 'profile', component: ProfileComponent},
       {path: 'card', component: CardComponent},
-      {path: 'add-item', component: AddItemComponent}
-
-    ]
-    ,
+      {path: 'add-item', component: AddItemComponent},
+      {path: 'seller-dashboard', component: SellerDashboardComponent}
+    ],
     canActivate: [HomeAuthGuard]
   },
 ];

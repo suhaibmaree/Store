@@ -1,12 +1,10 @@
 <p-menubar [model]="items">
   <ng-template pTemplate="start">
-    <img src="https://cdn.dribbble.com/users/182238/screenshots/2383317/lion2.jpg" height="40" class="p-mr-2" alt=""></ng-template>
+    <img src="https://cdn.dribbble.com/users/182238/screenshots/2383317/lion2.jpg" height="40" class="p-mr-2" alt="">
+  </ng-template>
   <ng-template pTemplate="end">
-    <span class="p-input-icon-right">
-    <i class="pi pi-search"></i>
-    <input type="text" pInputText placeholder="Search" [(ngModel)]="searchValue"/>
-    </span>
-      <p-button *ngIf="this.isCartValid" class="ml-1" label="Cart" icon="pi pi-shopping-cart" styleClass="p-button-warning" badge="8"
-                badgeClass="p-badge-danger"></p-button>
+    <p-button *ngIf="this.isCartValid" class="ml-1" label="Cart" icon="pi pi-shopping-cart"
+              styleClass="p-button-warning" badge="8"
+              badgeClass="p-badge-danger"></p-button>
   </ng-template>
 </p-menubar>

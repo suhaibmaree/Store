@@ -38,7 +38,7 @@ import {DropdownModule} from 'primeng/dropdown';
     AuthModule,
     HomeModule,
     ItemCardModule,
-    DropdownModule
+    DropdownModule,
   ],
   providers: [ItemService, SellerService, BuyerService, AuthService, HttpService],
   bootstrap: [AppComponent]
