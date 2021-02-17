@@ -7,7 +7,7 @@
     <div class="form-group">
       <label for="title">Title</label><br>
       <input id="title" type="text" aria-describedby="title-help" class="ng-invalid ng-dirty width-input form-control"
-             pInputText formControlName="title"/>
+             pInputText formControlName="title" placeholder="text"/>
       <small id="title-help" class="p-error"></small>
     </div>
 
@@ -17,22 +17,34 @@
              pInputText placeholder="Link" formControlName="cover"/>
       <small id="cover-help" class="p-error"></small>
     </div>
-
-    <div class="form-group">
-      <label for="price">Price</label><br>
-        <input id="price" type="number" aria-describedby="price-help" class="ng-invalid ng-dirty width-input form-control"
-               pInputText placeholder="$" formControlName="price"/>
-
-      <small id="price-help" class="p-error"></small>
-    </div>
-
-    <div class="form-group">
+    <br>
+    <div class="">
     <span class="p-float-label">
-      <textarea id="description" rows="2" cols="42" pInputTextarea autoResize="autoResize" formControlName="description"></textarea>
+      <textarea id="description" rows="2" cols="42" pInputTextarea autoResize="autoResize"
+                formControlName="description"></textarea>
       <label for="description">Item Description</label>
     </span>
     </div>
 
+    <div class=" p-field">
+      <label for="price">Price</label><br>
+      <p-inputNumber formControlName="price" [(ngModel)]="price" [showButtons]="true" id="price" mode="currency"
+                     currency="USD">
+      </p-inputNumber>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Item Category</label><br>
+      <p-dropdown id="category" [options]="categories" [(ngModel)]="selectedCategory" placeholder="Select item category"
+                  [showClear]="true" formControlName="category"></p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label for="stock">Items In Stock</label><br>
+      <p-inputNumber [(ngModel)]="itemsInStock" mode="decimal" id="stock" [useGrouping]="false" placeholder="0"
+                     formControlName="itemsInStock">
+      </p-inputNumber>
+    </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-block btn-lg">Add Item</button>
     </div>

@@ -20,6 +20,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AuthModule} from './auth/auth-module';
 import {HomeModule} from './component/home/home-module';
 import {ItemCardModule} from './component/card/item-card-module';
+import {DropdownModule} from 'primeng/dropdown';
+
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import {ItemCardModule} from './component/card/item-card-module';
     AuthModule,
     HomeModule,
     ItemCardModule,
+    DropdownModule
   ],
   providers: [ItemService, SellerService, BuyerService, AuthService, HttpService],
   bootstrap: [AppComponent]

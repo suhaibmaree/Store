@@ -15,6 +15,8 @@ import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AddItemComponent} from '../add-item/add-item.component';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -33,11 +35,13 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     DialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    InputTextareaModule
+    InputTextareaModule,
+    DropdownModule,
+    InputNumberModule
   ],
   providers: [HomeAuthGuard],
 })
 
-export class HomeModule{
+export class HomeModule {
 
 }

@@ -15,6 +15,15 @@ import {SellerService} from '../../shared/services/seller.service';
 export class AddItemComponent implements OnInit {
   form: FormGroup;
   seller: Seller;
+  categories = [
+    { label: 'Accessories', value: 'Accessories' },
+    { label: 'Fitness', value: 'Fitness' },
+    { label: 'Clothing', value: 'Clothing' },
+    { label: 'Electronics', value: 'Electronics' },
+  ];
+  selectedCategory: string;
+  price: number;
+  itemsInStock: number;
 
   constructor(public itemService: ItemService, public sellerService: SellerService, private afs: AngularFirestore) {
   }
@@ -24,8 +33,13 @@ export class AddItemComponent implements OnInit {
       title: new FormControl(null),
       cover: new FormControl(null),
       price: new FormControl(null),
-      description: new FormControl(null)
+      description: new FormControl(null),
+      category: new FormControl(null),
+      itemsInStock: new FormControl(null)
+
     });
+    this.price = 0;
+    this.itemsInStock = 0;
   }
 
   addItem(): void {
@@ -34,11 +48,13 @@ export class AddItemComponent implements OnInit {
     const rate = 3;
     const price = this.form.value.price;
     const description = this.form.value.description;
+    const category = this.form.value.category;
+    const itemsInStock = this.form.value.itemsInStock;
     const id = this.afs.createId();
 
-    const sellerId = this.seller.userId;
     this.seller = JSON.parse(localStorage.getItem(AppSharedConst.USER));
-    const item = new Item(imagePath, title, rate, price, description, id, sellerId);
+    const sellerId = this.seller.userId;
+    const item = new Item(imagePath, title, rate, price, description, id, sellerId, category, itemsInStock);
     this.itemService.create(item);
     this.seller.items.push(id);
 
