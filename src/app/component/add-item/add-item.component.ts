@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {ItemService} from '../../shared/services/item.service';
+import {Item} from '../../shared/model/item';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {AppSharedConst} from '../../shared/app-shared-const';
+import {Seller} from '../../shared/model/seller';
+import {SellerService} from '../../shared/services/seller.service';
 
 @Component({
   selector: 'app-add-item',
@@ -8,13 +14,37 @@ import {FormGroup} from '@angular/forms';
 })
 export class AddItemComponent implements OnInit {
   form: FormGroup;
+  seller: Seller;
 
-  constructor() { }
+  constructor(public itemService: ItemService, public sellerService: SellerService, private afs: AngularFirestore) {
+  }
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      title: new FormControl(null),
+      cover: new FormControl(null),
+      price: new FormControl(null),
+      description: new FormControl(null)
+    });
   }
 
   addItem(): void {
+    const imagePath = this.form.value.cover;
+    const title = this.form.value.title;
+    const rate = 3;
+    const price = this.form.value.price;
+    const description = this.form.value.description;
+    const id = this.afs.createId();
 
+    const sellerId = this.seller.userId;
+    this.seller = JSON.parse(localStorage.getItem(AppSharedConst.USER));
+    const item = new Item(imagePath, title, rate, price, description, id, sellerId);
+    this.itemService.create(item);
+    this.seller.items.push(id);
+
+    localStorage.removeItem(AppSharedConst.USER);
+    localStorage.setItem(AppSharedConst.USER, JSON.stringify(this.seller));
+    const key = localStorage.getItem(AppSharedConst.USER_KEY);
+    this.sellerService.update(key, this.seller);
   }
 }

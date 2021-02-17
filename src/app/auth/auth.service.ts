@@ -63,7 +63,7 @@ export class AuthService {
                   break;
                 }
                 case 'seller': {
-                  this.sellerService.storeSeller(new Seller(id, firstName, lastName, type, address, email, []));
+                  this.sellerService.storeSeller(new Seller(id, firstName, lastName, type, address, email));
                   break;
                 }
               }

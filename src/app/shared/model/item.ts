@@ -1,15 +1,21 @@
-export class Item {
-  id: number;
-  title: string;
-  imgPath: string;
-  description: string;
-  sellerId: number;
+import {FormControl} from '@angular/forms';
 
-  constructor(id: number, title: string, imgPath: string, description: string, sellerId: number) {
-    this.id = id;
-    this.title = title;
+export class Item {
+  imgPath: string;
+  title: string;
+  rate: number;
+  price: number;
+  description: string;
+  id: string;
+  sellerId: string;
+
+  constructor(imgPath: string, title: string, rate: number, price: number, description: string, id: string, sellerId: string) {
     this.imgPath = imgPath;
+    this.title = title;
+    this.rate = rate;
+    this.price = price;
     this.description = description;
+    this.id = id;
     this.sellerId = sellerId;
   }
 }

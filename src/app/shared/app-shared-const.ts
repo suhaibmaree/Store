@@ -2,6 +2,7 @@ export class AppSharedConst {
   static JSON = '.json';
   static SELLERS_DB_PATH = '/data/users/sellers';
   static BUYERS_DB_PATH = '/data/users/buyers';
+  static ITEMS_DB_PATH = '/data/items';
   static AUTH = '?auth=';
   static TOKEN = 'token';
   static EMAIL = 'email';

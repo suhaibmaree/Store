@@ -7,31 +7,29 @@
     <div class="form-group">
       <label for="title">Title</label><br>
       <input id="title" type="text" aria-describedby="title-help" class="ng-invalid ng-dirty width-input form-control"
-             pInputText/>
+             pInputText formControlName="title"/>
       <small id="title-help" class="p-error"></small>
     </div>
 
     <div class="form-group">
       <label for="cover">Cover Image</label><br>
       <input id="cover" type="text" aria-describedby="cover-help" class="ng-invalid ng-dirty width-input form-control"
-             pInputText/>
+             pInputText placeholder="Link" formControlName="cover"/>
       <small id="cover-help" class="p-error"></small>
     </div>
 
     <div class="form-group">
-      <label for="price">price</label><br>
-      <span class="p-input-icon-left ">
-        <i class="pi pi-dollar"></i>
+      <label for="price">Price</label><br>
         <input id="price" type="number" aria-describedby="price-help" class="ng-invalid ng-dirty width-input form-control"
-               pInputText/>
-      </span>
+               pInputText placeholder="$" formControlName="price"/>
+
       <small id="price-help" class="p-error"></small>
     </div>
 
     <div class="form-group">
     <span class="p-float-label">
-      <textarea id="description" rows="2" cols="42" pInputTextarea autoResize="autoResize"></textarea>
-      <label for="description">description</label>
+      <textarea id="description" rows="2" cols="42" pInputTextarea autoResize="autoResize" formControlName="description"></textarea>
+      <label for="description">Item Description</label>
     </span>
     </div>
 

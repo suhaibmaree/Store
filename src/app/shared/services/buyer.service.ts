@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Buyer} from '../model/buyer';
 import {HttpService} from './http.service';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
-import {map} from 'rxjs/operators';
 import {AppSharedConst} from '../app-shared-const';
 
 @Injectable({

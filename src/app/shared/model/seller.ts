@@ -7,16 +7,15 @@ export class Seller implements User{
   lastName: string;
   userType: string;
   address: string;
-  items: number[];
+  items = ['0'];
   key: string;
 
   constructor(userId: string, firstName: string, lastName: string,
-              userType: string, address: string, email: string, items: number[]) {
+              userType: string, address: string, email: string) {
     this.userId = userId;
     this.firstName = firstName;
     this.lastName = lastName;
     this.userType = userType;
-    this.items = items;
     this.address = address;
     this.email = email;
   }
