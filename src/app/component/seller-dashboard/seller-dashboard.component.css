@@ -79,8 +79,9 @@ img {
   margin-right: 2rem;
 }
 
-.product-list-detail {
+.product-grid-list-detail {
   flex: 1 1 0;
+  margin-left: 10px;
 }
 
 .p-rating {
@@ -94,7 +95,7 @@ img {
   align-self: flex-end;
 }
 
-.product-list-action {
+.product-grid-list-action {
   display: flex;
   flex-direction: column;
 }

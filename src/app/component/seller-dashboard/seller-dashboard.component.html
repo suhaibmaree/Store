@@ -63,7 +63,7 @@
   </p-dialog>
 
   <div class="item-data-view">
-    <p-dataView [value]="items" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="9" filterBy="name">
+    <p-dataView [value]="items" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="3" filterBy="name">
       <ng-template pTemplate="header" class="parent">
         <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
           <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
@@ -76,11 +76,21 @@
         </div>
       </ng-template>
       <ng-template let-item pTemplate="listItem">
-        <div>
-          {{item.title}}
-        </div>
-        <div>
-          {{item.price}}
+        <div class="p-col-12">
+          <div class="product-list-item">
+            <img [src]="item?.imgPath" [alt]="item?.title" style="width: 150px; height: 130px "/>
+            <div class="product-grid-list-detail">
+              <div class="product-name">{{item?.title}}</div>
+              <div class="product-description">{{item?.description}}</div>
+              <p-rating [ngModel]="item?.rate" [readonly]="true" [cancel]="false"></p-rating>
+              <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{item?.category}}</span>
+            </div>
+            <div class="product-grid-list-action">
+              <span class="product-price">${{item?.price}}</span>
+              <p-button icon="pi pi-shopping-cart" label="Add to Cart" [disabled]="item?.inventoryStatus === 'OUTOFSTOCK'"></p-button>
+              <span [class]="'product-badge' ">{{item?.inventoryStatus}}</span>
+            </div>
+          </div>
         </div>
       </ng-template>
       <ng-template let-item pTemplate="gridItem">
@@ -101,7 +111,7 @@
             </div>
             <div class="product-grid-item-bottom">
               <span class="product-price">${{item?.price}}</span>
-              <!--            <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>-->
+              <p-button icon="pi pi-shopping-cart" [disabled]="item?.inventoryStatus === 'OUTOFSTOCK'"></p-button>
             </div>
           </div>
         </div>
