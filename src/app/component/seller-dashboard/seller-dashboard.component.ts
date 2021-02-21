@@ -7,7 +7,7 @@ import {ItemService} from '../../shared/services/item.service';
 import {SellerService} from '../../shared/services/seller.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
-import {User} from '../../shared/model/user';
+import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-seller-dashboard',
@@ -30,7 +30,12 @@ export class SellerDashboardComponent implements OnInit {
   description: string;
   cover: string;
   title: string;
+
   items: Item[];
+  sortField: string;
+  sortOrder: number;
+  sortOptions: SelectItem[];
+  sortKey: string;
 
   constructor(public itemService: ItemService, public sellerService: SellerService, private afs: AngularFirestore) {
 
@@ -48,6 +53,11 @@ export class SellerDashboardComponent implements OnInit {
     });
     this.price = 0;
     this.itemsInStock = 0;
+
+    this.sortOptions = [
+      {label: 'Price (High to Low)', value: '!price'},
+      {label: 'Price (Low to High)', value: 'price'}
+    ];
 
     this.getItems();
   }
@@ -101,5 +111,18 @@ export class SellerDashboardComponent implements OnInit {
       this.items = value;
     });
 
+  }
+
+  onSortChange(event): any {
+    const value = event.value;
+
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+    }
+    else {
+      this.sortOrder = 1;
+      this.sortField = value;
+    }
   }
 }

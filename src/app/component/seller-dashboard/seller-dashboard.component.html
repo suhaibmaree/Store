@@ -62,12 +62,53 @@
     </div>
   </p-dialog>
 
-  <p-dataView [value]="items" class="item-data-view">
-    <ng-template let-item pTemplate="listItem">
-      <div>
-        {{item.id}}
-      </div>
-    </ng-template>
-  </p-dataView>
-
+  <div class="item-data-view">
+    <p-dataView [value]="items" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="9" filterBy="name">
+      <ng-template pTemplate="header" class="parent">
+        <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
+                      (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
+          <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+           <i class="pi pi-search"></i>
+           <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+         </span>
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        </div>
+      </ng-template>
+      <ng-template let-item pTemplate="listItem">
+        <div>
+          {{item.title}}
+        </div>
+        <div>
+          {{item.price}}
+        </div>
+      </ng-template>
+      <ng-template let-item pTemplate="gridItem">
+        <div class="p-col-12 p-md-4">
+          <div class="product-grid-item card">
+            <div class="product-grid-item-top">
+              <div>
+                <i class="pi pi-tag product-category-icon"></i>
+                <span class="product-category">{{item?.category}}</span>
+              </div>
+              <span [class]="'product-badge '">{{item?.itemsInStock}}</span>
+            </div>
+            <div class="product-grid-item-content">
+              <img [src]="item?.imgPath" [alt]="item?.title"/>
+              <div class="product-name">{{item?.title}}</div>
+              <div class="product-description">{{item?.description}}</div>
+              <p-rating [ngModel]="item?.rate" [readonly]="true" [cancel]="false"></p-rating>
+            </div>
+            <div class="product-grid-item-bottom">
+              <span class="product-price">${{item?.price}}</span>
+              <!--            <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>-->
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <!--      <p-dataViewLayoutOptions></p-dataViewLayoutOptions>-->
+      </ng-template>
+    </p-dataView>
+  </div>
 </div>

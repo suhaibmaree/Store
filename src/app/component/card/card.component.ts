@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Item} from '../../shared/model/item';
 
 @Component({
   selector: 'app-card',
@@ -7,17 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
   rating: number;
-  price: string;
+  price: number;
   description: string;
   title: string;
+  item: Item;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.title = 'Item Card';
-    this.rating = 3;
-    this.price = '5';
-    this.description = 'This is a dummy description';
+    this.title = this.item.title;
+    this.rating = this.item.rate;
+    this.price = this.item.price;
+    this.description = this.item.description;
   }
 
   addToCart(): void {

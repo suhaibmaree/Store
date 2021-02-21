@@ -22,6 +22,7 @@ import {RippleModule} from 'primeng/ripple';
 import {InputTextModule} from 'primeng/inputtext';
 import {DataViewModule} from 'primeng/dataview';
 import {RatingModule} from 'primeng/rating';
+import {ItemCardModule} from '../card/item-card-module';
 
 
 
@@ -33,24 +34,25 @@ import {RatingModule} from 'primeng/rating';
     AddItemComponent,
     SellerDashboardComponent
   ],
-  imports: [
-    MenubarModule,
-    ButtonModule,
-    SharedModule,
-    HomeRoutingModule,
-    FormsModule,
-    CommonModule,
-    DialogModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    InputTextareaModule,
-    DropdownModule,
-    InputNumberModule,
-    RippleModule,
-    InputTextModule,
-    DataViewModule,
-    RatingModule
-  ],
+    imports: [
+        MenubarModule,
+        ButtonModule,
+        SharedModule,
+        HomeRoutingModule,
+        FormsModule,
+        CommonModule,
+        DialogModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        InputTextareaModule,
+        DropdownModule,
+        InputNumberModule,
+        RippleModule,
+        InputTextModule,
+        DataViewModule,
+        RatingModule,
+        ItemCardModule
+    ],
   providers: [HomeAuthGuard],
 })
 

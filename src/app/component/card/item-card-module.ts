@@ -10,21 +10,22 @@ import {RippleModule} from 'primeng/ripple';
 
 
 @NgModule({
-  declarations: [
-    CardComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    ButtonModule,
-    CardModule,
-    RatingModule,
-    FormsModule,
-    RippleModule
-  ],
-  providers: [
-
-  ]
+    declarations: [
+        CardComponent
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        ButtonModule,
+        CardModule,
+        RatingModule,
+        FormsModule,
+        RippleModule
+    ],
+    exports: [
+        CardComponent
+    ],
+    providers: []
 })
 export class ItemCardModule{
 
